@@ -34,27 +34,22 @@ void addHistory(const char *type, float balance, float amount){
     struct tm *date = localtime(&t);
     
     data[historyCount].year = date->tm_year + 1900;
-   data[historyCount].month = date->tm_mon + 1;
+    data[historyCount].month = date->tm_mon + 1;
     data[historyCount].day = date->tm_mday;
     data[historyCount].hour = date->tm_hour;
     data[historyCount].minute = date->tm_min;
 
     historyCount++;
 
-    FILE *f = fopen("History.txt", "a");
-    fprintf(f, "%s;%.3f;%.3f;%d;%02d;%02d;%d;%02dn", data[historyCount].type, data[historyCount].balance, data[historyCount].amount,
-            data[historyCount].year, data[historyCount].month, data[historyCount].day, data[historyCount].hour, data[historyCount].minute);
-    fclose(f);
 };
 
 void seeHistory(){
-
-    // for(int i = 0; i < historyCount; i++){
-    //         printf("%d. Type: %s\n   Amount %s: %.3f\n   Balance: %.3f\n   %d-%02d-%02d\n   %02d:%02d\n",
-    //             i + 1, data[i].type, data[i].type, data[i].amount, data[i].balance,  data[i].year, data[i].month, data[i].day,data[i].hour, data[i].minute);
+    for(int i = 0; i < historyCount; i++){
+    printf("%d. Type: %s\n   Amount %s: %.3f\n   Balance: %.3f\n   %d-%02d-%02d\n   %02d:%02d\n",
+        i + 1, data[i].type, data[i].type, data[i].amount, data[i].balance,  data[i].year, data[i].month, data[i].day,data[i].hour, data[i].minute);
     
-    //             printf("\n");
-    //         }
+        printf("\n");
+     }
 };
 
 void details(struct user *acc){
@@ -63,9 +58,7 @@ void details(struct user *acc){
     printf("USER: Andi\n");
     printf("ACCOUNT ID: 908070\n");
     printf("BALANCE: %.3f\n", acc->balance);
-
-    FILE *f = fopen(f, "Account.txt", "a");
-    fprintf(f, "%s;%d;%.3f\n", acc->name, acc->id, acc->name);
+    
 };
 
 void deposit(struct user *acc){
@@ -173,4 +166,5 @@ int main(){
     printf("Thank you for using!");
 
     return 0;
+
 }
